@@ -1,0 +1,25 @@
+{
+  "name": "3davinci/tinkoff-gateway",
+  "minimum-stability": "stable",
+  "version": "0.1.1",
+  "description": "Tinkoff REST client",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sergey Dmitriev",
+      "email": "sedmit@3davinci.ru"
+    }
+  ],
+  "require": {
+    "php": "^7.4",
+    "symfony/http-client": "5.4.x-dev",
+    "ext-json": "*",
+    "ext-mbstring": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tinkoff\\": "src/Tinkoff/"
+    }
+  }
+}
