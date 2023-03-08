@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tinkoff\Entity;
 
-class ReceiptItem extends EntityAbstract
+class ReceiptItem implements EntityInterface
 {
     /**
      * Наименование товара
@@ -285,4 +285,17 @@ class ReceiptItem extends EntityAbstract
         return $this;
     }
 
+    public function toArray(): array
+    {
+        $properties = [];
+        foreach ($this as $name => $value) {
+            if ($value instanceof EntityInterface) {
+                $properties[ucfirst($name)] = $value->toArray();
+            } else if (!is_null($value)) {
+                $properties[ucfirst($name)] = $value;
+            }
+        }
+
+        return $properties;
+    }
 }

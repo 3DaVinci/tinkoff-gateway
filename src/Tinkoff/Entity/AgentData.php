@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tinkoff\Entity;
 
-class AgentData extends EntityAbstract
+class AgentData implements EntityInterface
 {
     /**
      * Признак агента. Возможные значения:
@@ -213,4 +213,15 @@ class AgentData extends EntityAbstract
         return $this;
     }
 
+    public function toArray(): array
+    {
+        $properties = [];
+        foreach ($this as $name => $value) {
+            if (!is_null($value)) {
+                $properties[ucfirst($name)] = $value;
+            }
+        }
+
+        return $properties;
+    }
 }

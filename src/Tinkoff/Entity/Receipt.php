@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tinkoff\Entity;
 
-class Receipt
+class Receipt implements EntityInterface
 {
     /**Электронная почта покупателя
      *
@@ -186,5 +186,25 @@ class Receipt
     {
         $this->ffdVersion = $ffdVersion;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        $properties = [];
+        foreach ($this as $name => $value) {
+            if ($value instanceof EntityInterface) {
+                $properties[ucfirst($name)] = $value->toArray();
+            } else if (is_array($value)) {
+                $items = [];
+                foreach ($value as $item) {
+                    $items[] = $item->toArray();
+                }
+                $properties[ucfirst($name)] = $items;
+            } else if (!is_null($value)) {
+                $properties[ucfirst($name)] = $value;
+            }
+        }
+
+        return $properties;
     }
 }

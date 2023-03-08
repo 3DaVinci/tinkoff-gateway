@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tinkoff\Http\Request;
 
+use Member;
 use Payment;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Tinkoff\Config\Config;
@@ -68,7 +69,9 @@ abstract class RequestAbstract implements RequestInterface
     {
         $token = $this->config->getPassword();
         foreach ($this->getParameters() as $param) {
-            $token .= $param;
+            if (is_scalar($param)) {
+                $token .= $param;
+            }
         }
         $token = hash('sha256', $token);
         $this->setParameter('Token', $token);

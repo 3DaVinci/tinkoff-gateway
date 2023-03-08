@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tinkoff\Entity;
 
-class SupplierInfo extends EntityAbstract
+class SupplierInfo implements EntityInterface
 {
     /**
      * Телефон поставщика
@@ -78,5 +78,17 @@ class SupplierInfo extends EntityAbstract
     {
         $this->inn = $inn;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        $properties = [];
+        foreach ($this as $name => $value) {
+            if (!is_null($value)) {
+                $properties[ucfirst($name)] = $value;
+            }
+        }
+
+        return $properties;
     }
 }

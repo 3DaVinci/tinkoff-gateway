@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tinkoff\Entity;
 
-class Payments extends EntityAbstract
+class Payments implements EntityInterface
 {
     /**
      * Вид оплаты "Наличные". Сумма к оплате в копейках не более 14 знаков.
@@ -129,5 +129,17 @@ class Payments extends EntityAbstract
     {
         $this->provision = $provision;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        $properties = [];
+        foreach ($this as $name => $value) {
+            if (!is_null($value)) {
+                $properties[ucfirst($name)] = $value;
+            }
+        }
+
+        return $properties;
     }
 }
