@@ -62,7 +62,7 @@ class ConfirmRequest extends RequestAbstract
      */
     public function setReceipt(Receipt $value): void
     {
-        $this->setParameter('Receipt', $value);
+        $this->setParameter('Receipt', $value->toArray());
     }
 
     public function validate()
