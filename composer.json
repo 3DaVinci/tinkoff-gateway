@@ -1,7 +1,7 @@
 {
   "name": "3davinci/tinkoff-gateway",
   "minimum-stability": "stable",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "description": "Tinkoff REST client",
   "type": "library",
   "license": "MIT",
