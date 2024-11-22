@@ -14,6 +14,7 @@ use Tinkoff\Http\Response\ResponseInterface;
 class RestGateway
 {
     private const API_URI = 'https://securepay.tinkoff.ru/v2/';
+    private const TEST_API_URI = 'https://rest-api-test.tinkoff.ru/v2/';
 
     private HttpClientInterface $httpClient;
 
@@ -24,7 +25,8 @@ class RestGateway
      */
     public function __construct(array $config)
     {
-        $this->httpClient = HttpClient::createForBaseUri(self::API_URI, [
+        $url = $config['testMode'] ? self::TEST_API_URI : self::API_URI;
+        $this->httpClient = HttpClient::createForBaseUri($url, [
             'headers' => ['Content-Type' => 'application/json']
         ]);
         $this->config = new Config($config);
