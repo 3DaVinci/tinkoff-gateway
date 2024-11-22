@@ -12,7 +12,7 @@ class Config
 
     private string $password;
 
-    private string $testMode;
+    private bool $testMode;
 
     /**
      * @throws ConfigException
@@ -45,9 +45,9 @@ class Config
     }
 
     /**
-     * @return string
+     * @return boolean
      */
-    public function getTestMode(): string
+    public function getTestMode(): bool
     {
         return $this->testMode;
     }
