@@ -12,6 +12,8 @@ class Config
 
     private string $password;
 
+    private string $testMode;
+
     /**
      * @throws ConfigException
      */
@@ -41,4 +43,14 @@ class Config
     {
         return $this->password;
     }
+
+    /**
+     * @return string
+     */
+    public function getTestMode(): string
+    {
+        return $this->testMode;
+    }
+
+
 }
