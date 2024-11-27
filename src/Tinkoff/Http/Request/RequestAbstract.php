@@ -67,8 +67,11 @@ abstract class RequestAbstract implements RequestInterface
      */
     public function setToken(): void
     {
-        $token = $this->config->getPassword();
-        foreach ($this->getParameters() as $param) {
+        $token = '';
+        $params = $this->getParameters();
+        $params['Password'] = $this->config->getPassword();
+        ksort($params);
+        foreach ($params as $param) {
             if (is_scalar($param)) {
                 $token .= $param;
             }
